@@ -1,21 +1,24 @@
 import { HStack, Image, Text } from "@chakra-ui/react"
-import logo from '../assets/logo.webp'
+import logo from "../assets/logo.webp"
 import ColorModeSwitch from "./ColorModeSwitch"
 import useOnlineStatus from "../hooks/useOnlineStatus"
+import SearchInput from "./SearchInput"
 
-const NavBar = () => {
+interface Props {
+  onSearch: (searchText: string) => void
+}
 
-    const isOnline = useOnlineStatus()
+const NavBar = ({ onSearch }: Props) => {
+  const isOnline = useOnlineStatus()
 
-    return (
-        <HStack justifyContent={'space-between'} p={'10px'}>
-            <Image src={logo} />
-            <HStack gap={12}>
-                <Text>{isOnline ? "🟢 Online" : "🔴 Offline"}</Text>
-                <ColorModeSwitch />
-            </HStack>
-        </HStack>
-    )
+  return (
+    <HStack gap={4} p={"10px"}>
+      <Image src={logo} />
+      <SearchInput onSearch={onSearch} />
+      <Text fontSize={"smaller"}>{isOnline ? "🟢 Online" : "🔴 Offline"}</Text>
+      <ColorModeSwitch />
+    </HStack>
+  )
 }
 
 export default NavBar
