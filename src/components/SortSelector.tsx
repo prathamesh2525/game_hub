@@ -31,7 +31,7 @@ const SortSelector = ({ onSelectSortOrder, selectedSort }: Props) => {
             onClick={() => onSelectSortOrder(order.value)}
             value={order.value}
             key={order.value}
-          >
+          > 
             {order.label}
           </MenuItem>
         ))}
